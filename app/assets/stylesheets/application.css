@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  background-image: url("https://s3-us-west-1.amazonaws.com/blocmetrics-app-assets/DeathtoStock_Creative+Community7.jpg?X-Amz-Date=20150428T141127Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=ba9cd58c9971d877ed65d3bb9d9314a5d74864b20958bdf4dfb41075266967e4&X-Amz-Credential=ASIAI4FPP6YDSKFWHE3Q/20150428/us-west-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=AQoDYXdzEC8akALCDPVqr9m%2BbDHCl8kE8CDxJlHiwErIJQ8CkhCFhZx40JQtkWYF1aglNHmgX22ZRQX2nOLdwfsqRVQAs0f1ODnauPkiMepb2Jis1qkm5uXmGailLhepTIVtRQCv1qyaF2eHfACdNXEMFPS98NNYkr14pnVkfJTLcf2zBdgELxbI9ZLB/OCz4UcWv5mc/SYPDpM9koCCpWgivLCguS%2B6ufiFefMkI6GxFW62xIMGpTXuzcr4i6R/mKQtGSxjFnhu0Oqy/Lg5b/WOWTcZgiP8F/bpIdIkXKLrPDISpbmovK9ZzdgJgYEzXvXCOZY8vQHoCaPuvBgvMjJIDu6c0vP7wxEMzVmqX8zhE2tR3J6o02nC3SDgpv6pBQ%3D%3D");
+  background-repeat: no-repeat;
+  background-size: 100%;
+ }
