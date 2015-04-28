@@ -34,4 +34,5 @@ gem 'devise'
 gem 'pundit'
 gem 'puma'
 gem 'figaro'
+gem 'rest-client'
 
