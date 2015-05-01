@@ -34,9 +34,6 @@ gem 'devise'
 gem 'pundit'
 gem 'puma'
 gem 'figaro'
-<<<<<<< HEAD
 gem 'bootstrap-sass'
-=======
 gem 'rest-client'
->>>>>>> master
 
