@@ -15,12 +15,11 @@
       <li><%= link_to "BlocMetrics", root_path, class: 'navbar-brand' %></li>
       <div class="pull-right user-info">
         <% if current_user %>
-          Hello <%= link_to (current_user.email), current_user %>!
-          <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
+          <%= link_to edit_user_registration_path, class: 'btn btn-default btn-sm' do %>
             <span class="glyphicon glyphicon-user"></span>
           <% end %>
 
-          <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
+          <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-default btn-sm' do %>
             <span class="glyphicon glyphicon-log-out"></span>
           <% end %>
         <% else %>
