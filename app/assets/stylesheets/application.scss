@@ -20,11 +20,31 @@
  body {
     background-image: url("https://s3-us-west-1.amazonaws.com/blocmetrics-app-assets/IMG_5754GBlur.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
  }
 
 .valign {
     min-height: 100vh;
+}
+
+.vcenter {
+  position: relative;
+  transform: translateY(50%);
+}
+
+.nav {
+  background-color: #eeeeee;
+  padding-top: 3px;
+}
+
+.user-info {
+  margin: 12px 10px 0 0;
+}
+
+.nav > li > a {
+  color: #333333;
 }
 
 

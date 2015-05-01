@@ -9,9 +9,10 @@
 </head>
 <body>
   <div class-"container">
-    <ul class="nav nav-tabs">
-      <li><%= link_to "BlocMetrics", root_path %></li>
 
+    <ul class="nav nav-tabs">
+
+      <li><%= link_to "BlocMetrics", root_path, class: 'navbar-brand' %></li>
       <div class="pull-right user-info">
         <% if current_user %>
           Hello <%= link_to (current_user.email), current_user %>!
@@ -27,6 +28,7 @@
             <%= link_to "Sign Up", new_user_registration_path %>
         <% end %>
       </div>
+      
     </ul>
 
     <% if flash[:notice] %>
