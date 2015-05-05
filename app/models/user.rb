@@ -18,12 +18,11 @@ class User < ActiveRecord::Base
   def set_token
     token = generate_token
     # TODO: set environment URLs
-    response = RestClient.post 'http://localhost:3001/users', user: { token: token }
-    if response.code == 201
-      self.update_attribute(:token, token)
-    end
+    response = RestClient.post 'http://localhost:3001/users',
+                               user: { token: token }
+    update_attribute(:token, token) if response.code == 201
   rescue RestClient::RequestFailed
-    #TODO: Regenerate token and/or user flow with error-message
+    # TODO: Regenerate token and/or user flow with error-message
     return false
   end
 end
