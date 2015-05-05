@@ -1,9 +1,10 @@
 <div class="row valign">
-<div class="jumbotron col-md-8 col-md-offset-2 vcenter">
-  <blockquote>
-    <h1>What's measured improves</h1>
-    <p>- Peter F. Drucker</p>
-    <p>Join the almost - most advanced analytics platform ever for the web.</p>
-  </blockquote>
-</div>
+  <div class="jumbotron col-md-8 col-md-offset-2 vcenter">
+    <blockquote>
+      <h1>What's measured improves</h1>
+      <p>- Peter F. Drucker</p>
+      <p>Join the almost - most advanced analytics platform ever for the web.</p>
+    </blockquote>
+    <%= RestClient.get('http://localhost:3001/apps', {Authorization: "Token token=dacb9f7b92c77a922f9c878ac63abc4c"}) %>
+  </div>
 </div>
