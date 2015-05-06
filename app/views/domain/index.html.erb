@@ -8,6 +8,9 @@
     Snippet * Instructions
   </div>
   <div ng-app="Domain" ng-controller="domainCtrl">
-    {{ firstName + " " + lastName }}
+    <ul ng-repeat="domain in domains">
+      <li>{{ domain.domain }}</li>
+    </ul>
   </div>
+
 </div>
