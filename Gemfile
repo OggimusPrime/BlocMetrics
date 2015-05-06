@@ -36,4 +36,3 @@ gem 'puma'
 gem 'figaro'
 gem 'bootstrap-sass'
 gem 'rest-client'
-
