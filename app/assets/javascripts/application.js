@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require bootstrap
 //= require angular
+//= require angular-resource
