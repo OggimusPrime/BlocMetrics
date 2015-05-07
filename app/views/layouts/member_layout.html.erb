@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blocmetrics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="member">
+  <div class-"container">
+
+    <ul class="nav nav-tabs">
+
+      <li><%= link_to "BlocMetrics", root_path, class: 'navbar-brand' %></li>
+      <div class="pull-right user-info">
+        <div class="btn-group" role="group" aria-label="...">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              Projects
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" ng-app="App" ng-controller="mainCtrl">
+              <li ng-repeat="domain in domains"><a href="#">{{ domain.domain }}</a></li>
+            </ul>
+          </div>
+          <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
+          <span class="glyphicon glyphicon-user"></span>
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-default btn' do %>
+          <span class="glyphicon glyphicon-log-out"></span>
+          <% end %>
+        </div>
+      </div>
+
+    </ul>
+
+    <div class="flash">
+    <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:notice] %>
+    </div>
+    <% elsif flash[:error] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:error] %>
+    </div>
+    <% elsif flash[:alert] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:alert] %>
+    </div>
+    <% end %>
+  </div>
+
+    <div class="container main-panel">
+
+      <%= yield %>
+
+    </div>
+
+  </div>
+</body>
+</html>

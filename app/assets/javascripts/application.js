@@ -16,3 +16,17 @@
 //= require bootstrap
 //= require angular
 //= require angular-resource
+
+var app = angular.module("App", ["ngResource"])
+
+.controller('mainCtrl', function($scope, $http){
+  $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
+
+  var domain = $http.get('http://localhost:3001/apps').
+  success(function(data, status, headers, config) {
+    $scope.domains = data;
+  }).
+  error(function(data, status, headers, config) {
+    console.log('Error');
+  });
+})
