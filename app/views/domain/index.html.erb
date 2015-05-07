@@ -1,15 +1,18 @@
 <%= javascript_include_tag 'domain' %>
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-10 col-md-offset-1 dashboard">
   <h2>This is where the user will see the list of apps, can register an app, and get the JS snippet</h2>
   <div class="row">
     Register apps
   </div>
   <div class="row">
-    Snippet * Instructions
+    <textarea>
+
+
+    </textarea>
   </div>
   <div ng-app="Domain" ng-controller="domainCtrl">
-    <ul ng-repeat="domain in domains">
-      <li>{{ domain.domain }}</li>
+    <ul>
+      <li ng-repeat="domain in domains">{{ domain.domain }}</li>
     </ul>
   </div>
 

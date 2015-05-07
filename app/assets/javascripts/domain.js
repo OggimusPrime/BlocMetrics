@@ -3,13 +3,21 @@ var app = angular.module("Domain", ["ngResource"])
 .controller('domainCtrl', function($scope, $http){
   $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
 
-  $http.get('http://localhost:3001/apps').
-    success(function(data, status, headers, config) {
-      $scope.domains = data;
-    }).
-    error(function(data, status, headers, config) {
-      console.log('Err');
-    });
+  var domain = $http.get('http://localhost:3001/apps').
+  success(function(data, status, headers, config) {
+    $scope.domains = data;
+  }).
+  error(function(data, status, headers, config) {
+    console.log('Error');
+  });
+
+  // $http.get('http://localhost:3001/apps/#{domain.id}').
+  // success(function(data, status, headers, config) {
+  //   $scope.events = data;
+  // }).
+  // error(function(data, status, headers, config) {
+  //   console.log('Error');
+  // });
 
   // $http({
   //   method: 'GET',
