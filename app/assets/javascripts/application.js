@@ -32,15 +32,15 @@ var blocmetrics = angular.module('blocmetrics', ['ngResource'])
   });
 
   // API call for an apps events
-  // $scope.getEvents = function() {
-    var response = $http.get('http://localhost:3001/apps/1').
+  $scope.getEvents = function(domainId) {
+    var response = $http.get('http://localhost:3001/apps/' + domainId).
     success(function(data, status, headers, config) {
       $scope.events = data;
     }).
     error(function(data, status, headers, config) {
       console.log('Error');
     });
-  // };
+  };
 });
 
 // .controller('domainCtrl', function($scope, $http){

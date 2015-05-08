@@ -21,7 +21,7 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li ng-repeat="domain in domains"><a ng-href="#" ng-click="{{domain.id}}">{{ domain.domain }}</a></li>
+              <li ng-repeat="domain in domains" ng-click="getEvents(domain.id)">{{ domain.domain }}</li>
             </ul>
           </div>
           <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
