@@ -36,6 +36,7 @@ var blocmetrics = angular.module('blocmetrics', ['ngResource'])
     var response = $http.get('http://localhost:3001/apps/' + domainId).
     success(function(data, status, headers, config) {
       $scope.events = data;
+      new Chartkick.PieChart("analytics", data.events);
     }).
     error(function(data, status, headers, config) {
       console.log('Error');
