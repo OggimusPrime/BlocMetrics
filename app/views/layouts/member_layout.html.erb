@@ -24,6 +24,9 @@
               <li ng-repeat="domain in domains" ng-click="getEvents(domain.id)">{{ domain.domain }}</li>
             </ul>
           </div>
+          <%= link_to root_path, class: 'btn btn-default btn' do %>
+          <span class="glyphicon glyphicon-cog"></span>
+          <% end %>
           <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
           <span class="glyphicon glyphicon-user"></span>
           <% end %>
