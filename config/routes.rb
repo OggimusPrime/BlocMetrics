@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   authenticated :user do
-  root to: 'setup#index', as: 'setup'
+    root to: 'setup#index', as: 'setup'
 
     resources :domain, only: [:index]
   end

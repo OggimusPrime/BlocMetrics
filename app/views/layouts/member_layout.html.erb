@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="blocmetrics">
 <head>
   <title>Blocmetrics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,7 @@
 <body class="member">
   <div class-"container">
 
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" ng-controller="mainCtrl">
 
       <li><%= link_to "BlocMetrics", root_path, class: 'navbar-brand' %></li>
       <div class="pull-right user-info">
@@ -20,8 +20,8 @@
               Projects
               <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" ng-app="App" ng-controller="mainCtrl">
-              <li ng-repeat="domain in domains"><a href="#">{{ domain.domain }}</a></li>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="domain in domains"><a ng-href="#" ng-click="getEvents({{ domain.id }})">{{ domain.domain }}</a></li>
             </ul>
           </div>
           <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
