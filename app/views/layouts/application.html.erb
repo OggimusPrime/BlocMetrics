@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
   <title>Blocmetrics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="home">
   <div class-"container">
 
     <ul class="nav nav-tabs">
@@ -47,7 +47,11 @@
       </div>
     <% end %>
 
-    <%= yield %>
+    <div class="row">
+
+      <%= yield %>
+
+    </div>
 
   </div>
 </body>
