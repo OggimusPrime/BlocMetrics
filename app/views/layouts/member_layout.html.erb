@@ -8,9 +8,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="member">
-  <div class-"container">
+  <div ng-controller="mainCtrl">
 
-    <ul class="nav nav-tabs" ng-controller="mainCtrl">
+    <ul class="nav nav-tabs">
 
       <li><%= link_to "BlocMetrics", root_path, class: 'navbar-brand' %></li>
       <div class="pull-right user-info">
@@ -21,7 +21,7 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li ng-repeat="domain in domains"><a ng-href="#" ng-click="getEvents({{ domain.id }})">{{ domain.domain }}</a></li>
+              <li ng-repeat="domain in domains"><a ng-href="#" ng-click="{{domain.id}}">{{ domain.domain }}</a></li>
             </ul>
           </div>
           <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
