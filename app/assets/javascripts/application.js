@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require angular
+//= require angular-route
 //= require angular-resource
 
 var blocmetrics = angular.module('blocmetrics', ['ngResource'])
@@ -36,7 +37,7 @@ var blocmetrics = angular.module('blocmetrics', ['ngResource'])
     var response = $http.get('http://localhost:3001/apps/' + domainId).
     success(function(data, status, headers, config) {
       $scope.events = data;
-      new Chartkick.PieChart("analytics", data.events);
+      new Chartkick.ColumnChart("analytics", data.data);
     }).
     error(function(data, status, headers, config) {
       console.log('Error');
