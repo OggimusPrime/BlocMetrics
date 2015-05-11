@@ -12,33 +12,39 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap
 //= require angular
 //= require angular-route
 //= require angular-resource
+//= require angular-rails-templates
+// Templates in app/assets/javascript/templates
+//= require_tree ./templates
 
-var blocmetrics = angular.module('blocmetrics', ['ngResource']);
 
-// blocmetrics.config(function($routeProvider, $locationProvider) {
-//   $locationProvider.html5Mode(true);
-//   $routeProvider
-//     .when('/domain', {
-//       templateUrl: "views/domain/index.html.erb",
-//       controller: 'mainCtrl'
-//     })
-//     .when('/setup',{
-//       templateUrl: 'views/setup/index.html.erb',
-//       controller: 'mainCtrl'
-//     })
-//     .otherwise({
-//       redirectTo: '/'
-//     });
-// });
+var blocmetrics = angular.module('blocmetrics', ['ngResource', 'ngRoute', 'templates']);
+
+blocmetrics.config(function($routeProvider, $locationProvider) {
+  // $locationProvider.html5Mode(true);
+  $routeProvider
+  .when('/domains/:domain_id', {
+    templateUrl: 'assets/templates/domain.html',
+    controller: 'domainCtrl'
+  })
+  .when('/setup', {
+    templateUrl: 'assets/templates/setup.html',
+    controller: 'setupCtrl'
+  })
+  .otherwise({
+    redirectTo: '/setup'
+  });
+});
 
 angular.module('blocmetrics').controller('mainCtrl', function($scope, $http){
   $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
 
+  $scope.goToDomain = function(domainId) {
+    document.location = '#domains/' + domainId;
+  };
   // API call for users apps
   var domain = $http.get('http://localhost:3001/apps').
   success(function(data, status, headers, config) {
@@ -47,29 +53,21 @@ angular.module('blocmetrics').controller('mainCtrl', function($scope, $http){
   error(function(data, status, headers, config) {
     console.log('Error');
   });
-
-  // API call for an apps events
-  $scope.getEvents = function(domainId) {
-    var response = $http.get('http://localhost:3001/apps/' + domainId).
-    success(function(data, status, headers, config) {
-      $scope.events = data;
-      $scope.app = Object.keys(data)[0];
-      new Chartkick.ColumnChart("analytics", data.data);
-    }).
-    error(function(data, status, headers, config) {
-      console.log('Error');
-    });
-  };
 });
 
-// .controller('domainCtrl', function($scope, $http){
-//   $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
-//
-//   var events = $http.get('http://localhost:3001/apps/#{domain.id}').
-//   success(function(data, status, headers, config) {
-//     $scope.events = data;
-//   }).
-//   error(function(data, status, headers, config) {
-//     console.log('Error');
-//   });
-// })
+angular.module('blocmetrics').controller('setupCtrl', function($scope, $http){
+
+});
+
+angular.module('blocmetrics').controller('domainCtrl', function($scope, $routeParams, $http) {
+  // API call for an apps events
+  var response = $http.get('http://localhost:3001/apps/' + $routeParams.domain_id).
+  success(function(data, status, headers, config) {
+    $scope.events = data;
+    $scope.app = data.data[Object.keys(data.data)[Object.keys(data.data).length - 1]];
+    new Chartkick.ColumnChart("analytics", data.data.slice(0, -1));
+  }).
+  error(function(data, status, headers, config) {
+    console.log('Error');
+  });
+});

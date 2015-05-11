@@ -9,11 +9,10 @@
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 </head>
 <body ng-app="blocmetrics" class="member">
-  <div ng-controller="mainCtrl">
 
-    <ul class="nav nav-tabs">
+    <ul ng-controller="mainCtrl" class="nav nav-tabs">
 
-      <li><%= link_to "BlocMetrics", root_path, class: 'navbar-brand' %></li>
+      <li><%= link_to "BlocMetrics", '#setup', class: 'navbar-brand' %></li>
       <div class="pull-right user-info">
         <div class="btn-group" role="group" aria-label="...">
           <div class="btn-group" role="group">
@@ -22,10 +21,10 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li ng-repeat="domain in domains" ng-click="getEvents(domain.id)">{{ domain.domain }}</li>
+              <li ng-repeat="domain in domains" ng-click="goToDomain(domain.id)">{{ domain.domain }}</li>
             </ul>
           </div>
-          <%= link_to root_path, class: 'btn btn-default btn' do %>
+          <%= link_to '#setup', class: 'btn btn-default btn' do %>
           <span class="glyphicon glyphicon-cog"></span>
           <% end %>
           <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
@@ -39,31 +38,26 @@
 
     </ul>
 
-    <!-- <div class="flash">
-    <% if flash[:notice] %>
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= flash[:notice] %>
-    </div>
-    <% elsif flash[:error] %>
-    <div class="alert alert-danger">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= flash[:error] %>
-    </div>
-    <% elsif flash[:alert] %>
-    <div class="alert alert-warning">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= flash[:alert] %>
-    </div>
-    <% end %>
-    </div> -->
-
-    <div class="container main-panel">
-
-      <%= yield %>
-
+    <div class="flash">
+      <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+      <% elsif flash[:error] %>
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:error] %>
+      </div>
+      <% elsif flash[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+      <% end %>
     </div>
 
-  </div>
+    <div ng-view class="container main-panel"></div>
+
 </body>
 </html>
