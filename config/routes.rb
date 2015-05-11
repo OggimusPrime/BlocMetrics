@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   authenticated :user do
     root to: 'setup#index', as: 'setup'
 
+    # get '*path' => 'setup#index'
+
     resources :domain, only: [:index]
   end
 

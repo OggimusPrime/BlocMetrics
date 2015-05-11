@@ -18,9 +18,25 @@
 //= require angular-route
 //= require angular-resource
 
-var blocmetrics = angular.module('blocmetrics', ['ngResource'])
+var blocmetrics = angular.module('blocmetrics', ['ngResource']);
 
-.controller('mainCtrl', function($scope, $http){
+// blocmetrics.config(function($routeProvider, $locationProvider) {
+//   $locationProvider.html5Mode(true);
+//   $routeProvider
+//     .when('/domain', {
+//       templateUrl: "views/domain/index.html.erb",
+//       controller: 'mainCtrl'
+//     })
+//     .when('/setup',{
+//       templateUrl: 'views/setup/index.html.erb',
+//       controller: 'mainCtrl'
+//     })
+//     .otherwise({
+//       redirectTo: '/'
+//     });
+// });
+
+angular.module('blocmetrics').controller('mainCtrl', function($scope, $http){
   $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
 
   // API call for users apps
@@ -37,6 +53,7 @@ var blocmetrics = angular.module('blocmetrics', ['ngResource'])
     var response = $http.get('http://localhost:3001/apps/' + domainId).
     success(function(data, status, headers, config) {
       $scope.events = data;
+      $scope.app = Object.keys(data)[0];
       new Chartkick.ColumnChart("analytics", data.data);
     }).
     error(function(data, status, headers, config) {
