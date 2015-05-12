@@ -24,15 +24,17 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li ng-repeat="domain in domains" ng-click="goToDomain(domain.id)">{{ domain.domain }}</li>
+            <li ng-repeat="domain in domains" ng-click="goToDomain(domain.id)">
+              <a href="">{{ domain.domain }}</a>
+            </li>
           </ul>
         </div>
         <%= link_to '#setup', class: 'btn btn-default btn' do %>
         <span class="glyphicon glyphicon-cog"></span>
         <% end %>
-        <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
-        <span class="glyphicon glyphicon-user"></span>
-        <% end %>
+        <!-- <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
+        <span class="glyphicon glyphicon-user"></span> -->
+        <!-- <% end %> -->
         <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-default btn' do %>
         <span class="glyphicon glyphicon-log-out"></span>
         <% end %>
@@ -41,7 +43,8 @@
 
   </ul>
 
-  <div ng-view class="container main-panel"></div>
+  <div ng-view class="container main-panel">
+  </div>
 
   <div class="footer">
     BlocMetrics
