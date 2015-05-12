@@ -50,7 +50,7 @@
 .main-panel {
   background-color: #eeeeee;
   position: relative;
-  transform: translateY(10%);
+  margin: 70px auto 30px;
   min-height: 78vh;
 }
 
@@ -64,4 +64,16 @@
 
 .dashboard {
   background-color: #eeeeee;
+}
+
+.footer {
+  font-family: 'Montserrat', sans-serif;
+  margin: 30px auto;
+  text-align: center;
+  font-size: 30px;
+  color: #eeeeee;
+}
+
+.navbar-brand, .page-header {
+  font-family: 'Montserrat', sans-serif;
 }

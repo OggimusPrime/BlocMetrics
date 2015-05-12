@@ -1,2 +1,69 @@
-<h1>New Setup</h1>
-<p>Find me in app/views/setup/index.html.erb</p>
+<h2 class="page-header">Welcome to BlocMetrics - Get Started!</h2>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="step">
+      <h4>Step 1: Install the BlocMetrics Library</h4>
+      <p>Paste this snippet in your <code>application.js</code> file:</p>
+      <pre ng-model="cookie">
+        var sendTrackableEvent = function(domain, url, event){
+          var _bm_event = {
+            event: {
+              domain: domain,
+              url: url,
+              event: event
+            }
+          };
+
+          var _bm_request = new XMLHttpRequest();
+          _bm_request.open('POST', 'http://localhost:3001/events', true);
+          _bm_request.setRequestHeader('Content-Type', 'application/json');
+          _bm_request.setRequestHeader('Authorization', 'Token {{ cookie }}' );
+          _bm_request.onreadystatechange = function() {
+          };
+          _bm_request.send(JSON.stringify(_bm_event));
+        };
+      </pre>
+    </div>
+    <div class="step">
+      <h4>Step 2: Track an Event</h4>
+      <p>To track pageviews, place this snippet below the <code>sendTrackableEvent</code> function:</p>
+      <pre>
+        $(document).ready(function(){
+          sendTrackableEvent(document.location.host, document.location.pathname, "pageview")
+        });
+      </pre>
+      <p>To track events, place this snippet below the <code>sendTrackableEvent</code> function:</p>
+      <pre>
+        $(document).ready(function(){
+          $("a.trackable").click(function(){
+            sendTrackableEvent(document.location.host, document.location.pathname, $(this).data("track"));
+          })
+        });
+      </pre>
+      <p>To track pageviews &amp; events, place this snippet below the <code>sendTrackableEvent</code> function:</p>
+      <pre>
+        $(document).ready(function(){
+          sendTrackableEvent(document.location.host, document.location.pathname, "pageview")
+
+          $("a.trackable").click(function(){
+            sendTrackableEvent(document.location.host, document.location.pathname, $(this).data("track"));
+          })
+        });
+      </pre>
+      <p>Then declare those events in the view:</p>
+      <pre>
+        &lt;%= link_to "Link", link_path, class: 'trackable', 'data-track' => 'event-name' %&gt;
+      </pre>
+    </div>
+    <div class="step">
+      <h4>Step 3: Register a Project</h4>
+      <p>To create a new project, you can either register your domain via the form below, or you can install the JS snippets above and wait for the first event to auto create the project for you.</p>
+      <form novalidate class='input-group'>
+        <input class="form-control" type="text" ng-model="domain" placeholder="Register Domain as New Project">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="update(domain)">Submit</button>
+        </span>
+      </form>
+    </div>
+  </div>
+</div>

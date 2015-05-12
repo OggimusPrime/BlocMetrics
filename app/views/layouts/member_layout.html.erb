@@ -7,57 +7,45 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 </head>
 <body ng-app="blocmetrics" class="member">
 
-    <ul ng-controller="mainCtrl" class="nav nav-tabs">
+  <ul ng-controller="mainCtrl" class="nav nav-tabs navbar-fixed-top">
 
-      <li><%= link_to "BlocMetrics", '#setup', class: 'navbar-brand' %></li>
-      <div class="pull-right user-info">
-        <div class="btn-group" role="group" aria-label="...">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              Projects
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li ng-repeat="domain in domains" ng-click="goToDomain(domain.id)">{{ domain.domain }}</li>
-            </ul>
-          </div>
-          <%= link_to '#setup', class: 'btn btn-default btn' do %>
-          <span class="glyphicon glyphicon-cog"></span>
-          <% end %>
-          <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
-          <span class="glyphicon glyphicon-user"></span>
-          <% end %>
-          <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-default btn' do %>
-          <span class="glyphicon glyphicon-log-out"></span>
-          <% end %>
+    <li>
+      <%= link_to "BlocMetrics", '#setup', class: 'navbar-brand' %>
+    </li>
+    <div class="pull-right user-info">
+      <div class="btn-group" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Projects
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="domain in domains" ng-click="goToDomain(domain.id)">{{ domain.domain }}</li>
+          </ul>
         </div>
+        <%= link_to '#setup', class: 'btn btn-default btn' do %>
+        <span class="glyphicon glyphicon-cog"></span>
+        <% end %>
+        <%= link_to edit_user_registration_path, class: 'btn btn-default btn' do %>
+        <span class="glyphicon glyphicon-user"></span>
+        <% end %>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-default btn' do %>
+        <span class="glyphicon glyphicon-log-out"></span>
+        <% end %>
       </div>
-
-    </ul>
-
-    <div class="flash">
-      <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:notice] %>
-      </div>
-      <% elsif flash[:error] %>
-      <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:error] %>
-      </div>
-      <% elsif flash[:alert] %>
-      <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:alert] %>
-      </div>
-      <% end %>
     </div>
 
-    <div ng-view class="container main-panel"></div>
+  </ul>
+
+  <div ng-view class="container main-panel"></div>
+
+  <div class="footer">
+    BlocMetrics
+  </div>
 
 </body>
 </html>
