@@ -57,6 +57,26 @@ angular.module('blocmetrics').controller('mainCtrl', function($scope, $http){
 
 angular.module('blocmetrics').controller('setupCtrl', function($scope, $http){
 
+  $scope.cookie = document.cookie;
+
+  $scope.domain = {};
+
+  $scope.update = function(domain) {
+    $http.post('http://localhost:3001/apps', {
+      'app': { domain }
+    }).
+    success(function(data, status, headers, config) {
+      console.log('Success');
+      $scope.reset();
+    }).
+    error(function(data, status, headers, config) {
+      console.log('Error');
+    });
+  };
+  $scope.reset = function() {
+    $scope.domain = angular.copy($scope.master);
+  };
+  $scope.reset();
 });
 
 angular.module('blocmetrics').controller('domainCtrl', function($scope, $routeParams, $http) {
