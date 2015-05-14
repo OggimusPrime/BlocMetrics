@@ -39,14 +39,31 @@ blocmetrics.config(function($routeProvider, $locationProvider) {
   });
 });
 
-angular.module('blocmetrics').controller('mainCtrl', function($scope, $http){
+blocmetrics.factory('apiFactory', function(){
+  var api = "";
+
+  if (location.hostname == "ryanhaase-blocmetrics.herokuapp.com") {
+    api = "https://ryanhaase-api-blocmetrics.herokuapp.com/";
+    return api;
+  } else {
+    api = "http://localhost:3001";
+    return api;
+  }
+  return api;
+});
+
+
+angular.module('blocmetrics').controller('mainCtrl', function($scope, apiFactory, $http){
+
+  $scope.api = apiFactory;
+
   $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
 
   $scope.goToDomain = function(domainId) {
     document.location = '#domains/' + domainId;
   };
   // API call for users apps
-  var domain = $http.get('http://localhost:3001/apps').
+  var domain = $http.get(apiFactory +'/apps').
   success(function(data, status, headers, config) {
     $scope.domains = data;
   }).
@@ -55,14 +72,14 @@ angular.module('blocmetrics').controller('mainCtrl', function($scope, $http){
   });
 });
 
-angular.module('blocmetrics').controller('setupCtrl', function($scope, $http){
+angular.module('blocmetrics').controller('setupCtrl', function($scope, apiFactory, $http){
 
   $scope.cookie = document.cookie;
 
   $scope.domain = {};
 
   $scope.update = function(domain) {
-    $http.post('http://localhost:3001/apps', {
+    $http.post(apiFactory +'/apps', {
       'app': { domain }
     }).
     success(function(data, status, headers, config) {
@@ -79,9 +96,9 @@ angular.module('blocmetrics').controller('setupCtrl', function($scope, $http){
   $scope.reset();
 });
 
-angular.module('blocmetrics').controller('domainCtrl', function($scope, $routeParams, $http) {
+angular.module('blocmetrics').controller('domainCtrl', function($scope, $routeParams, apiFactory, $http) {
   // API call for an apps events
-  var response = $http.get('http://localhost:3001/apps/' + $routeParams.domain_id).
+  var response = $http.get(apiFactory + '/apps/' + $routeParams.domain_id).
   success(function(data, status, headers, config) {
     $scope.events = data;
     $scope.app = data.data[Object.keys(data.data)[Object.keys(data.data).length - 1]];
