@@ -18,7 +18,14 @@ class User < ActiveRecord::Base
   def set_token
     token = generate_token
     # TODO: set environment URLs
-    response = RestClient.post 'http://localhost:3001/users',
+
+    if Rails.env.development?
+      blocmetrics_api = 'http://localhost:3001'
+    else
+      blocmetrics_api = 'https://ryanhaase-api-blocmetrics.herokuapp.com'
+    end
+
+    response = RestClient.post "#{blocmetrics_api}/users",
                                user: { token: token }
     update_attribute(:token, token) if response.code == 201
   rescue RestClient::RequestFailed
