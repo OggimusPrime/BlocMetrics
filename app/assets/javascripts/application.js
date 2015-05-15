@@ -40,32 +40,17 @@ blocmetrics.config(function($routeProvider, $locationProvider) {
 });
 
 angular.module('blocmetrics').factory('apiFactory', function(){
-
   var api = "";
 
-  var environment = "<%= Rails.env %>";
-
-  if (environment == "production") {
-    api = "https://ryanhaase-api-blocmetrics.herokuapp.com";
+  if (location.hostname == "localhost") {
+    api = "http://localhost:3001";
     return api;
   } else {
-    api = "http://localhost:3001";
+    api = "https://ryanhaase-api-blocmetrics.herokuapp.com";
     return api;
   }
   return api;
 });
-// angular.module('blocmetrics').factory('apiFactory', function(){
-//   var api = "";
-//
-//   if (location.hostname == "localhost") {
-//     api = "http://localhost:3001";
-//     return api;
-//   } else {
-//     api = "https://ryanhaase-api-blocmetrics.herokuapp.com";
-//     return api;
-//   }
-//   return api;
-// });
 
 angular.module('blocmetrics').controller('mainCtrl', function($scope, apiFactory, $http){
 
@@ -74,7 +59,6 @@ angular.module('blocmetrics').controller('mainCtrl', function($scope, apiFactory
   $scope.goToDomain = function(domainId) {
     document.location = '#domains/' + domainId;
   };
-  debugger;
   // API call for users apps
   var domain = $http.get(apiFactory +'/apps').
   success(function(data, status, headers, config) {
