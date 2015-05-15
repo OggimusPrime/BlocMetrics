@@ -39,7 +39,7 @@ blocmetrics.config(function($routeProvider, $locationProvider) {
   });
 });
 
-blocmetrics.factory('apiFactory', function(){
+angular.module('blocmetrics').factory('apiFactory', function(){
   var api = "";
 
   if (location.hostname == "ryanhaase-blocmetrics.herokuapp.com") {
@@ -54,8 +54,6 @@ blocmetrics.factory('apiFactory', function(){
 
 
 angular.module('blocmetrics').controller('mainCtrl', function($scope, apiFactory, $http){
-
-  $scope.api = apiFactory;
 
   $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
 
