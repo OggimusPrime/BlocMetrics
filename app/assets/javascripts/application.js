@@ -55,8 +55,6 @@ blocmetrics.factory('apiFactory', function(){
 
 angular.module('blocmetrics').controller('mainCtrl', function($scope, apiFactory, $http){
 
-  $scope.api = apiFactory;
-
   $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
 
   $scope.goToDomain = function(domainId) {
