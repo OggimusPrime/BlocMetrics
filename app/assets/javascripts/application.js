@@ -52,7 +52,7 @@ angular.module('blocmetrics').factory('apiFactory', function(){
   return api;
 });
 
-angular.module('blocmetrics').controller('mainCtrl', function($scope, apiFactory, $http){
+angular.module('blocmetrics').controller('mainCtrl', ['$scope', 'apiFactory', '$http', function($scope, apiFactory, $http){
 
   $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
 
@@ -67,9 +67,9 @@ angular.module('blocmetrics').controller('mainCtrl', function($scope, apiFactory
   error(function(data, status, headers, config) {
     console.log('Error');
   });
-});
+}]);
 
-angular.module('blocmetrics').controller('setupCtrl', function($scope, apiFactory, $http){
+angular.module('blocmetrics').controller('setupCtrl', ['$scope', 'apiFactory', '$http', function($scope, apiFactory, $http){
 
   $scope.cookie = document.cookie;
 
@@ -91,9 +91,9 @@ angular.module('blocmetrics').controller('setupCtrl', function($scope, apiFactor
     $scope.domain = angular.copy($scope.master);
   };
   $scope.reset();
-});
+}]);
 
-angular.module('blocmetrics').controller('domainCtrl', function($scope, $routeParams, apiFactory, $http) {
+angular.module('blocmetrics').controller('domainCtrl', ['$scope', '$routeParams', 'apiFactory', '$http', function($scope, $routeParams, apiFactory, $http) {
   // API call for an apps events
   var response = $http.get(apiFactory + '/apps/' + $routeParams.domain_id).
   success(function(data, status, headers, config) {
@@ -104,4 +104,4 @@ angular.module('blocmetrics').controller('domainCtrl', function($scope, $routePa
   error(function(data, status, headers, config) {
     console.log('Error');
   });
-});
+}]);
