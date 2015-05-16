@@ -17,7 +17,7 @@
 //= require angular-route
 //= require angular-resource
 //= require angular-rails-templates
-// Templates in app/assets/javascript/templates
+// Templates in app/assets/javascripts/templates
 //= require_tree ./templates
 
 
@@ -27,11 +27,11 @@ blocmetrics.config(function($routeProvider, $locationProvider) {
   // $locationProvider.html5Mode(true);
   $routeProvider
   .when('/domains/:domain_id', {
-    templateUrl: 'assets/templates/domain.html',
+    templateUrl: '<%= asset_path("templates/domain.html") %>',
     controller: 'domainCtrl'
   })
   .when('/setup', {
-    templateUrl: 'assets/templates/setup.html',
+    templateUrl: '<%= asset_path("templates/setup.html") %>',
     controller: 'setupCtrl'
   })
   .otherwise({
