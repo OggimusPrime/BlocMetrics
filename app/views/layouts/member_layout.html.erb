@@ -27,6 +27,10 @@
             <li ng-repeat="domain in domains" ng-click="goToDomain(domain.id)">
               <a href="">{{ domain.domain }}</a>
             </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#setup">+ Add Project</a>
+            </li>
           </ul>
         </div>
         <%= link_to '#setup', class: 'btn btn-default btn' do %>
