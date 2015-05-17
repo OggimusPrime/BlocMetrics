@@ -24,7 +24,8 @@
 var blocmetrics = angular.module('blocmetrics', ['ngResource', 'ngRoute', 'templates']);
 
 blocmetrics.config(function($routeProvider, $locationProvider) {
-  // $locationProvider.html5Mode(true);
+  // Default path set to setup page
+  // TODO: create path to rails user edit template for user#destroy
   $routeProvider
   .when('/domains/:domain_id', {
     templateUrl: '<%= asset_path("templates/domain.html") %>',
@@ -39,6 +40,7 @@ blocmetrics.config(function($routeProvider, $locationProvider) {
   });
 });
 
+// Factory: Sets environment variable URL
 angular.module('blocmetrics').factory('apiFactory', function(){
   var api = "";
 
@@ -52,14 +54,16 @@ angular.module('blocmetrics').factory('apiFactory', function(){
   return api;
 });
 
+// Controller for projects drop down on nav menu
 angular.module('blocmetrics').controller('mainCtrl', ['$scope', 'apiFactory', '$http', function($scope, apiFactory, $http){
 
   $http.defaults.headers.common['Authorization'] = 'Token ' + document.cookie;
 
+  // provides path to prjects view/analytics page
   $scope.goToDomain = function(domainId) {
     document.location = '#domains/' + domainId;
   };
-  // API call for users apps
+  // API call for users apps/projects
   var domain = $http.get(apiFactory +'/apps').
   success(function(data, status, headers, config) {
     $scope.domains = data;
@@ -69,8 +73,9 @@ angular.module('blocmetrics').controller('mainCtrl', ['$scope', 'apiFactory', '$
   });
 }]);
 
+// Register new app/project on setup page
 angular.module('blocmetrics').controller('setupCtrl', ['$scope', 'apiFactory', '$http', function($scope, apiFactory, $http){
-
+  //display users auth token in JS snippet
   $scope.cookie = document.cookie;
 
   $scope.domain = {};
@@ -97,7 +102,7 @@ angular.module('blocmetrics').controller('domainCtrl', ['$scope', '$routeParams'
   // API call for an apps events
   var response = $http.get(apiFactory + '/apps/' + $routeParams.domain_id).
   success(function(data, status, headers, config) {
-    $scope.events = data;
+    //Chartkick
     $scope.app = data.data[Object.keys(data.data)[Object.keys(data.data).length - 1]];
     new Chartkick.ColumnChart("analytics", data.data.slice(0, -1));
   }).

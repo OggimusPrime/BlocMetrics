@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
 
   def another_by_method
     if current_user.nil?
-      "application.html.erb"
+      'application.html.erb'
     else
-      "member_layout.html.erb"
+      'member_layout.html.erb'
     end
   end
 end
