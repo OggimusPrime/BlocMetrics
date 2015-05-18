@@ -15,15 +15,19 @@ class User < ActiveRecord::Base
     end
   end
 
-  def set_token
-    token = generate_token
-    # TODO: set environment URLs
-
+  def set_env
     if Rails.env.development?
       blocmetrics_api = 'http://localhost:3001'
     else
       blocmetrics_api = 'https://ryanhaase-api-blocmetrics.herokuapp.com'
     end
+    blocmetrics_api
+  end
+
+  def set_token
+    token = generate_token
+
+    blocmetrics_api = set_env
 
     response = RestClient.post "#{blocmetrics_api}/users",
                                user: { token: token }
