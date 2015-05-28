@@ -18,7 +18,7 @@ https://github.com/OggimusPrime/BlocMetrics-API
 At this time the events are displayed on the BlocMetrics Dashboard in a simple bar chart.
 
 ---
-The BlocMetrics Dashboard is primarily built in AngularJS, and why the API is standalone.
+The BlocMetrics Dashboard is primarily built in AngularJS, while the API is built in Rails.
 
 Due to this separation, in development the dashboard runs on `localhost:3000`, while the API runs on `localhost:3001`.
 
