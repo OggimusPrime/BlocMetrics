@@ -1,24 +1,24 @@
-##BlocMetrics - Dashboard
-BlocMetrics is a basic API Tracking Service and Reporting tool.
+##SimpleMetrics - Dashboard
+SimpleMetrics is a basic API Tracking Service and Reporting tool.
 
-https://ryanhaase-blocmetrics.herokuapp.com
+https://ryanhaase-simplemetrics.herokuapp.com
 
 
 When a user signs up, they are provided with a unique authentication token and
-registered with the standalone BlocMetrics API.
+registered with the standalone SimpleMetrics API.
 
 
 The standalone API is the data warehouse for all projects(web apps) and events.
 
-https://ryanhaase-api-blocmetrics.herokuapp.com/
+https://ryanhaase-api-simplemetrics.herokuapp.com/
 
-https://github.com/OggimusPrime/BlocMetrics-API
+https://github.com/OggimusPrime/SimpleMetrics-API
 
 
-At this time the events are displayed on the BlocMetrics Dashboard in a simple bar chart.
+At this time the events are displayed on the SimpleMetrics Dashboard in a simple bar chart.
 
 ---
-The BlocMetrics Dashboard is primarily built in AngularJS, while the API is built in Rails.
+The SimpleMetrics Dashboard is primarily built in AngularJS, while the API is built in Rails.
 
 Due to this separation, in development the dashboard runs on `localhost:3000`, while the API runs on `localhost:3001`.
 
