@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     if Rails.env.development?
       blocmetrics_api = 'http://localhost:3001'
     else
-      blocmetrics_api = 'https://ryanhaase-api-blocmetrics.herokuapp.com'
+      blocmetrics_api = 'https://ryanhaase-api-simplemetrics.herokuapp.com'
     end
     blocmetrics_api
   end

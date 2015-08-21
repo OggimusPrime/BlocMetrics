@@ -41159,7 +41159,7 @@ angular.module('blocmetrics').factory('apiFactory', function(){
     api = "http://localhost:3001";
     return api;
   } else {
-    api = "https://ryanhaase-api-blocmetrics.herokuapp.com";
+    api = "https://ryanhaase-api-simplemetrics.herokuapp.com";
     return api;
   }
   return api;
